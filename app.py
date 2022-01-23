@@ -45,6 +45,14 @@ def buildings():
 
     return render_template('buildings.html', buildings = db)
 
+@app.route("/ratings")
+def ratings():
+    building_number = ""
+    for building in db:
+        building_number += f"<p>{building.building_rating}</p>"
+
+    return render_template('buildings.html', buildings = db)
+
 @app.route("/buildings/<building_name>")
 def building(building_name):
     building_info = ""
