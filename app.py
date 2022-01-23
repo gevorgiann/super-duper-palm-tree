@@ -12,7 +12,6 @@ class Building:
         self.building_name = ""
         self.building_rating = 0
 
-
 building1 = Building()
 building1.floors = 2
 building1.ada_comp = True
@@ -31,11 +30,9 @@ building3.ada_comp = True
 building3.building_name = "SRC"
 building3.building_rating = 0
 
-
 db.append(building1)
 db.append(building2)
 db.append(building3)
-
 
 @app.route("/buildings")
 def buildings():
@@ -51,7 +48,7 @@ def ratings():
     for building in db:
         building_number += f"<p>{building.building_rating}</p>"
 
-    return render_template('buildings.html', buildings = db)
+    return render_template('ratings.html', buildings = db)
 
 @app.route("/buildings/<building_name>")
 def building(building_name):
@@ -60,7 +57,6 @@ def building(building_name):
         if building.building_name == building_name:
             return render_template('building.html', building = building)
     return redirect(url_for('buildings'))
-
 
 @app.route("/")
 def hello_world():
