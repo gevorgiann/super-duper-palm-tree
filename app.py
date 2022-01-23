@@ -2,8 +2,12 @@ from distutils.command.build import build
 from operator import truediv
 from flask import Flask
 from flask import render_template
-from flask import redirect, url_for, request
+from flask import redirect, url_for, request, redirect, abort, send_from_directory
 import statistics
+from werkzeug.utils import secure_filename
+import imghdr
+import os
+
 
 
 app = Flask(__name__)
@@ -110,6 +114,44 @@ def building(building_name):
 def jade():
     building_info = ""
     return render_template('index.html')
+
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
+app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
+app.config['UPLOAD_PATH'] = 'upload'
+os.mkdir('upload')
+
+def validate_image(stream):
+    header = stream.read(512)
+    stream.seek(0)
+    format = imghdr.what(None, header)
+    if not format:
+        return None
+    return '.' + (format if format != 'jpeg' else 'jpg')
+
+@app.errorhandler(413)
+def too_large(e):
+    return "File is too large", 413
+
+@app.route('/upload')
+def index():
+    files = os.listdir(app.config['UPLOAD_PATH'])
+    return render_template('upload.html', files=files)
+
+@app.route('/upload', methods=['POST'])
+def upload_files():
+    uploaded_file = request.files['file']
+    filename = secure_filename(uploaded_file.filename)
+    if filename != '':
+        file_ext = os.path.splitext(filename)[1]
+        if file_ext not in app.config['UPLOAD_EXTENSIONS'] or \
+                file_ext != validate_image(uploaded_file.stream):
+            return "Invalid image", 400
+        uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+    return '', 204
+
+@app.route('/upload/<filename>')
+def upload(filename):
+    return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 @app.route("/")
 def bottom():
