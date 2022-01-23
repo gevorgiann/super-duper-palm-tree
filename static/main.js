@@ -19,7 +19,7 @@ const sol_marker = L.marker([34.240038, -118.527068]).addTo(mymap);
 let template = `
 <h3>Sol Center</h3>
 <div style="text-align:center">
-    <img width="150" height="150"src="static/sol_center.jpg"/>
+    <img width="150" height="150"src="static/styles/sol_center.jpg"/>
 </div>
 `
 sol_marker.bindPopup(template);
@@ -52,7 +52,7 @@ const Oasis_marker = L.marker([34.239318, -118.525974]).addTo(mymap);
 let template2 = `
 <h3>The Oasis</h3>
 <div style="text-align:center">
-    <img width="150" height="150"src="static/outside_oasis.jpg"/>
+    <img width="150" height="150"src="static/styles/outside_oasis.jpg"/>
 </div>
 `
 Oasis_marker.bindPopup(template2);
@@ -84,7 +84,7 @@ const src_marker = L.marker([34.24002, -118.524923]).addTo(mymap);
 let template3 = `
 <h3>The Student Recreation Center</h3>
 <div style="text-align:center">
-    <img width="150" height="150"src="static/outside_src.png"/>
+    <img width="150" height="150"src="static/styles/outside_src.png"/>
 </div>
 `
 src_marker.bindPopup(template3);
