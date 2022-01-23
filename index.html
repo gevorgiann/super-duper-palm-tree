@@ -1,25 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-    <title>CSUN ADA Map</title>
-
-    <style>
-        #map{
-            height: 800px;
-            width: 800px;
-            margin:5rem auto;
-        }
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<!-- NOTE: prior to v2.2.1 tiny-slider.js need to be in <body> -->
+<link rel="stylesheet" href="style.css">
+<title>Different CSUN Buildings</title>
 </head>
 <body>
-    
-    <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="main.js"></script>
+    <section id="slider"> 
+        <div class="container">
+            <div class="subcontainer"> 
+                <div class="slider-wrapper">
+                    <div class="controller">
+                        <div>
+                        <h2>CSUN Buildings</h2>
+                        </div>
+                        <div id="controls">
+                            <button class="previous"><i class="fas fa-angle-left"></i></button>
+                            <button class="next"><i class="fas fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="my-slider">
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-1">
+                                    <a href="SolCenterInside.png", style="color: rgb(116, 26, 26)">Where would you like to go?</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Sol Center</h3>
+                                    <p>Sol Center is ADA Compliant</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-2">
+                                    <a href="PoolMap.png", style="color: rgb(116, 26, 26)">Where would you like to go?</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>Oasis</h3>
+                                    <p>The Oasis is ADA Compliant</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="slide">
+                                <div class="slide-img img-3">
+                                    <a href="SRC1.png", style="color: rgb(116, 26, 26)">Where would you like to go?</a>
+                                </div>
+                                <br>
+                                <div>
+                                    <h3>SRC</h3>
+                                    <p>The Student Recreation Center is ADA Compliant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+
+    <script src="script.js"></script>
 </body>
 </html>
+
