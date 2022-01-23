@@ -1,4 +1,5 @@
 from distutils.command.build import build
+from genericpath import exists
 from operator import truediv
 from flask import Flask
 from flask import render_template
@@ -118,7 +119,8 @@ def jade():
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif']
 app.config['UPLOAD_PATH'] = 'upload'
-os.mkdir('upload')
+if not os.path.exists('upload'):  
+    os.mkdir('upload')
 
 def validate_image(stream):
     header = stream.read(512)
